@@ -83,16 +83,3 @@ class ViewKeysCommand(sublime_plugin.TextCommand):
       view.set_scratch(True)
     else:
       sublime.message_dialog("No View found")
-
-
-
-
-
-
-
-
-
-
-
-
-
