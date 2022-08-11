@@ -1,0 +1,3 @@
+Command (⌘) + Option (⌥)
+Control (⌃)
+Shift (⇧)
