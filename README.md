@@ -1,6 +1,6 @@
 # Keys
 
-[Sublime Text](https://www.sublimetext.com/) plugin to key maps.
+[Sublime Text](https://www.sublimetext.com/) plugin to display mapped keys.
 
 ![]()
 
