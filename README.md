@@ -15,3 +15,9 @@
 
 ## Functionality
 
+### List all keys
+
+To list all keys press `F1`.
+
+*Note*: If you've defined a filter, they keys will be filtered to show a subset.
+
