@@ -67,10 +67,13 @@ class KeysCommand(sublime_plugin.WindowCommand):
         fn = key_info.file_name.value
         command = key_info.command.value
         keys = Formatter.key_combo(key_info)
+        args = str(key_info.args.value) if key_info.args else "-"
 
         key_content += (f"{fn}\n")
         key_content += f"{'=' * len(fn)}\n"
-        key_content += f"  {keys} -> {command}\n\n"
+        key_content += f"  keys: {keys}\n"
+        key_content += f"  command: {command}\n"
+        key_content += f"  args: {args}\n\n"
 
       # print(key_content)
       view = window.new_file(sublime.TRANSIENT)
@@ -85,7 +88,6 @@ class ViewKeysCommand(sublime_plugin.TextCommand):
 
   def run(self, edit:sublime.Edit, **args) -> None:
     view = self.view
-    print(f"args: {args}")
     if view:
       view.insert(edit, 0, args['content'])
       view.set_read_only(True)
