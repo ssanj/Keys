@@ -18,7 +18,7 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
         # Don't show previews
         window.show_quick_panel(
           items = panel_items,
-          on_select = self.when_key_selected,
+          on_select = lambda n: self.when_key_selected(key_info_list, window, n),
           placeholder = f"Search Keys:"
         )
       else:
@@ -46,5 +46,15 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
     quick_panel_item = sublime.QuickPanelItem(trigger, details, annotation, kind)
     return quick_panel_item
 
-  def when_key_selected(self, index: int) -> None:
-    pass
+  def when_key_selected(self, key_info_list: List[KeyInfo], window: sublime.Window, index: int) -> None:
+    if index >= 0 and len(key_info_list) > index:
+      key_info = key_info_list[index]
+      key_combo = Formatter.key_combo(key_info)
+      html_content = f"""
+      <H1>{key_combo}</H1>
+      """
+      view = window.active_view()
+      if view:
+        view.show_popup(content = html_content, flags = sublime.HIDE_ON_CHARACTER_EVENT, max_width = 640, max_height = 480)
+      else:
+        sublime.message_dialog(key_combo)
