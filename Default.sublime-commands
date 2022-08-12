@@ -1,4 +1,4 @@
 [
-    { "caption": "Keys: Show Key maps", "command": "keys" },
+    { "caption": "Keys: Show Key maps", "command": "keys_view_key_definitions" },
     { "caption": "Keys: Search Key maps", "command": "keys_search" },
 ]
