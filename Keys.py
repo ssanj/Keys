@@ -132,14 +132,20 @@ class KeysSearchCommand(sublime_plugin.WindowCommand):
       sublime.message_dialog("No Window found")
 
   def create_quick_panel_item(self, window: sublime.Window, key_info: KeyInfo) -> sublime.QuickPanelItem:
-    trigger: str = Formatter.command_title_case(key_info)
+    command_title_case = Formatter.command_title_case(key_info)
+    key_combo = Formatter.key_combo(key_info)
+    trigger: str = f"{command_title_case} [{key_combo}]"
     details: List[str] = \
     [
-      Formatter.key_combo(key_info),
+      f"<b>{key_combo}</b>",
+      key_info.file_name.value,
       Formatter.args(key_info),
-      key_info.file_name.value
     ]
-    annotation: str = ""
+    has_context = "context" if key_info.context else ""
+    has_args = "args" if key_info.args else ""
+    annotation_prefix = "has" if has_context or has_args else ""
+    annotation_infix = " and " if has_context and has_args else ""
+    annotation: str = f"{annotation_prefix} {has_args}{annotation_infix}{has_context}"
     kind = sublime.KIND_AMBIGUOUS
     quick_panel_item = sublime.QuickPanelItem(trigger, details, annotation, kind)
     return quick_panel_item
