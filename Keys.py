@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 from typing import Dict, List, Tuple, Any, Optional
-from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key
+from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args
 from Keys.Components.Formatter import Formatter
 
 class KeyLogic:
@@ -47,7 +47,8 @@ class KeyLogic:
           separate_keys: List[str] = possible_keys[0].split("+") # assume at least one key
           keys: List[Key] = list(map(lambda k: Key(k.upper()), separate_keys))
           command = Command(els['command'])
-          key_info_list.append(KeyInfo(file_name, command, keys))
+          args = Args(els['args']) if 'args' in els else None
+          key_info_list.append(KeyInfo(file_name, command, keys, args))
 
 
     return key_info_list
@@ -115,7 +116,12 @@ class KeysSearchCommand(sublime_plugin.WindowCommand):
 
   def create_quick_panel_item(self, window: sublime.Window, key_info: KeyInfo) -> sublime.QuickPanelItem:
     trigger: str = Formatter.command_title_case(key_info)
-    details: str = Formatter.key_combo(key_info)
+    details: List[str] = \
+    [
+      Formatter.key_combo(key_info),
+      Formatter.args(key_info),
+      key_info.file_name.value
+    ]
     annotation: str = ""
     kind = sublime.KIND_AMBIGUOUS
     quick_panel_item = sublime.QuickPanelItem(trigger, details, annotation, kind)

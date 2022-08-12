@@ -1,6 +1,5 @@
 from Keys.Components.KeyInfo import KeyInfo
-from typing import List
-
+from typing import List, Dict, Any
 
 class Formatter:
 
@@ -14,3 +13,13 @@ class Formatter:
     plain_value: List[str] = command_value.split("_")
     titled_value: List[str] = list(map(lambda w: w.title(), plain_value))
     return " ".join(titled_value)
+
+  @staticmethod
+  def args(key_info: KeyInfo) -> str:
+    if key_info.args:
+      args_dict: Dict[str, Any] = key_info.args.value
+      items: List[str] = list(map(lambda kv: f"{kv[0]} -> {kv[1]}", args_dict.items()))
+      return " ".join(items)
+    else:
+      return "-"
+
