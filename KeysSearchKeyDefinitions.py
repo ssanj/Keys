@@ -4,9 +4,10 @@ from typing import Dict, List, Tuple, Any, Optional
 from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args, Context
 from Keys.Components.Formatter import Formatter
 from Keys.Components.KeyLogic import KeyLogic
-
+from Keys.Components.ConfigSettings import ConfigSettings
 
 class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
+
   def run(self) -> None:
     window = self.window
 

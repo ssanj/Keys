@@ -1,24 +1,10 @@
 from Keys.Components.KeyInfo import KeyInfo, Key
+from Keys.Components.KeyLogic import KeyLogic
 from typing import List, Dict, Any
 
 class Formatter:
 
-  # this can come from config
-  key_symbols: Dict[str, str] = \
-    {
-      "COMMAND": "⌘",
-      "SUPER": "⌘",
-      "PRIMARY": "⌘",
-      "CTRL": "⌃",
-      "OPTION": "⌥",
-      "ALT": "⌥",
-      "SHIFT": "⇧",
-      "UP": "↑",
-      "DOWN": "↓",
-      "TAB": "⇥",
-      "LEFT": "←",
-      "RIGHT": "→",
-    }
+  key_symbols: Dict[str, str] = KeyLogic.get_symbol_map()
 
   @staticmethod
   def key_combo(key_info: KeyInfo) -> str:
