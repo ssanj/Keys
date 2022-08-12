@@ -21,7 +21,7 @@ To list all keys press `F1`.
 
 ![](key-definitions.gif)
 
-*Note*: If you've defined a filter, they keys will be filtered to show a subset.
+*Note*: If you've defined a filter, the keys will be filtered to show a subset.
 
 ### Search by command or key
 
