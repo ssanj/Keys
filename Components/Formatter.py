@@ -9,11 +9,15 @@ class Formatter:
       "COMMAND": "⌘",
       "SUPER": "⌘",
       "PRIMARY": "⌘",
-      "CONTROL": "⌃",
+      "CTRL": "⌃",
       "OPTION": "⌥",
+      "ALT": "⌥",
       "SHIFT": "⇧",
       "UP": "↑",
       "DOWN": "↓",
+      "TAB": "⇥",
+      "LEFT": "←",
+      "RIGHT": "→",
     }
 
   @staticmethod

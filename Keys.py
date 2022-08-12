@@ -23,6 +23,7 @@ class KeyLogic:
       "Packages/Scoggle/",
       "Packages/Quick File Creator/",
       "Packages/LSP/",
+      "Packages/Default/",
     ]
 
   @staticmethod
