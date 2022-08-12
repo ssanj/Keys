@@ -1,3 +1,4 @@
 [
     { "caption": "Keys: Show Key maps", "command": "keys" },
+    { "caption": "Keys: Search Key maps", "command": "keys_search" },
 ]

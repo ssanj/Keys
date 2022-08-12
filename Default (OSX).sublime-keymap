@@ -1,3 +1,4 @@
 [
   { "keys": ["f1"], "command": "keys"},
+  { "keys": ["shift+f1"], "command": "keys_search"},
 ]
