@@ -50,8 +50,14 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
     if index >= 0 and len(key_info_list) > index:
       key_info = key_info_list[index]
       key_combo = Formatter.key_combo(key_info)
+      key_combo_symbolic = Formatter.get_symbolic_keys(key_info)
+      command = Formatter.command_title_case(key_info)
+      # Possibly add more data to the popup (context, args)
+      # move out styling to theme
       html_content = f"""
+      <H3 style="color:salmon">{command}</H3>
       <H1>{key_combo}</H1>
+      <H1>{key_combo_symbolic}</H1>
       """
       view = window.active_view()
       if view:

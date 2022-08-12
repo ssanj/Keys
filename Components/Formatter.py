@@ -25,10 +25,6 @@ class Formatter:
    return '+'.join(list(map(lambda k: k.value, key_info.keys)))
 
   @staticmethod
-  def key_combo_symbolic(key_info: KeyInfo) -> str:
-   return '+'.join(list(map(lambda k: k.value, key_info.keys)))
-
-  @staticmethod
   def get_symbolic_keys(key_info: KeyInfo) -> str:
     key_items: List[str] = list(map(lambda k: Formatter.get_symbolic(k).value, key_info.keys))
     return "+".join(key_items)
