@@ -53,3 +53,17 @@ class KeysViewKeyDefinitionsCommand(sublime_plugin.WindowCommand):
       return matched_views[0]
     else:
       return None
+
+
+# View used by KeysViewKeyDefinitionsCommand
+class ViewKeysCommand(sublime_plugin.TextCommand):
+
+  def run(self, edit:sublime.Edit, **args) -> None:
+    view = self.view
+    if view:
+      view.erase(edit, sublime.Region(0, view.size()))
+      view.insert(edit, 0, args['content'])
+      view.set_read_only(True)
+      view.set_scratch(True)
+    else:
+      sublime.message_dialog("No View found")
