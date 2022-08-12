@@ -134,10 +134,11 @@ class KeysSearchCommand(sublime_plugin.WindowCommand):
   def create_quick_panel_item(self, window: sublime.Window, key_info: KeyInfo) -> sublime.QuickPanelItem:
     command_title_case = Formatter.command_title_case(key_info)
     key_combo = Formatter.key_combo(key_info)
+    symbolic_key_combo: str = Formatter.get_symbolic_keys(key_info)
     trigger: str = f"{command_title_case} [{key_combo}]"
     details: List[str] = \
     [
-      f"<b>{key_combo}</b>",
+      f"<b>{symbolic_key_combo}</b>",
       key_info.file_name.value,
       Formatter.args(key_info),
     ]
