@@ -1,25 +1,24 @@
+from Keys.Components.ConfigSettings import ConfigSettings
 from Keys.Components.KeyInfo import KeyInfo, Key
 from Keys.Components.KeyLogic import KeyLogic
 from typing import List, Dict, Any
 
 class Formatter:
 
-  key_symbols: Dict[str, str] = KeyLogic.get_symbol_map()
-
   @staticmethod
   def key_combo(key_info: KeyInfo) -> str:
    return '+'.join(list(map(lambda k: k.value, key_info.keys)))
 
   @staticmethod
-  def get_symbolic_keys(key_info: KeyInfo) -> str:
-    key_items: List[str] = list(map(lambda k: Formatter.get_symbolic(k).value, key_info.keys))
+  def get_symbolic_keys(settings: ConfigSettings, key_info: KeyInfo) -> str:
+    key_items: List[str] = list(map(lambda k: Formatter.get_symbolic(settings, k).value, key_info.keys))
     return "+".join(key_items)
 
   @staticmethod
-  def get_symbolic(key: Key) -> Key:
+  def get_symbolic(settings: ConfigSettings, key: Key) -> Key:
     key_value = key.value.upper()
-    if key_value in Formatter.key_symbols:
-      return Key(Formatter.key_symbols[key_value])
+    if key_value in settings.symbol_map:
+      return Key(settings.symbol_map[key_value])
     else:
       return key
 

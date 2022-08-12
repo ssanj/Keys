@@ -6,15 +6,12 @@ from Keys.Components.SettingsLoader import SettingsLoader
 
 class KeyLogic:
 
-  KEY_SETTINGS: ConfigSettings = SettingsLoader.load_settings()
+  @staticmethod
+  def is_filtered_package(package: str, settings: ConfigSettings) -> bool:
+    return len(list(filter(lambda p: package.startswith(p), settings.packages_to_filter_in))) > 0
 
   @staticmethod
-  def is_filtered_package(package: str) -> bool:
-    return len(list(filter(lambda p: package.startswith(p), KeyLogic.KEY_SETTINGS.packages_to_filter_in))) > 0
-
-
-  @staticmethod
-  def get_key_info() -> List[KeyInfo]:
+  def get_key_info(settings: ConfigSettings) -> List[KeyInfo]:
     # Should we cache this information?
     keymaps = sublime.find_resources("*.sublime-keymap")
     # Should we move OS specific info to config?
@@ -23,7 +20,7 @@ class KeyLogic:
 
     key_info_list: List[KeyInfo] = []
     for n, (fn, d) in enumerate(list_keymap_dict):
-      if KeyLogic.is_filtered_package(fn):
+      if KeyLogic.is_filtered_package(fn, settings):
         file_name = FileName(fn)
         for els in d:
           possible_keys: List[str] = list(map(lambda k: k.upper(), els['keys']))
@@ -45,7 +42,3 @@ class KeyLogic:
       return Context(context_dict_list)
     else:
       return None
-
-  @staticmethod
-  def get_symbol_map() -> Dict[str, str]:
-    return KeyLogic.KEY_SETTINGS.symbol_map

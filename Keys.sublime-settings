@@ -1,2 +1,45 @@
 {
+
+  // To filter in *all* packages use:
+  // "packages_to_filter_in": ["Packages/"]
+  // these names are used as paths so the trailing '/' is required
+  "packages_to_filter_in": [
+    "Packages/User/",
+    "Packages/SymbolView/",
+    "Packages/RecentFolders/",
+    "Packages/QuickView/",
+    "Packages/QuickView/",
+    "Packages/OpenWindows/",
+    "Packages/OpenTabs/",
+    "Packages/OpenSplit/",
+    "Packages/Keys/",
+    "Packages/Ghomments/",
+    "Packages/BlogTools/",
+    "Packages/Scoggle/",
+    "Packages/Quick File Creator/",
+    "Packages/LSP/",
+    "Packages/Default/",
+  ],
+
+  // If you don't want any mapping use an empty object here
+  // "symbol_map": {}
+  "symbol_map": {
+    "COMMAND": "⌘",
+    "SUPER": "⌘",
+    "PRIMARY": "⌘",
+    "CTRL": "⌃",
+    "OPTION": "⌥",
+    "ALT": "⌥",
+    "SHIFT": "⇧",
+    "UP": "↑",
+    "DOWN": "↓",
+    "TAB": "⇥",
+    "LEFT": "←",
+    "RIGHT": "→",
+  },
+
+  // When debug is true, the settings loaded are written to the logs
+  // Also if this setting can't be read (because of some issue with the config)
+  // debug is on by default and will write out some useful information.
+  "debug": false
 }
