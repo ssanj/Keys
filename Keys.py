@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 from typing import Dict, List, Tuple, Any, Optional
-from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args
+from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args, Context
 from Keys.Components.Formatter import Formatter
 
 class KeyLogic:
@@ -48,10 +48,19 @@ class KeyLogic:
           keys: List[Key] = list(map(lambda k: Key(k.upper()), separate_keys))
           command = Command(els['command'])
           args = Args(els['args']) if 'args' in els else None
-          key_info_list.append(KeyInfo(file_name, command, keys, args))
+          context: Optional[Context] = KeyLogic.get_context(els)
+          key_info_list.append(KeyInfo(file_name, command, keys, args, context))
 
 
     return key_info_list
+
+  @staticmethod
+  def get_context(key_dict: Dict[str, Any]) -> Optional[Context]:
+    if 'context' in key_dict:
+      context_dict_list: List[Dict[str, Any]] = key_dict['context']
+      return Context(context_dict_list)
+    else:
+      return None
 
 class KeysCommand(sublime_plugin.WindowCommand):
 
@@ -68,12 +77,18 @@ class KeysCommand(sublime_plugin.WindowCommand):
         command = key_info.command.value
         keys = Formatter.key_combo(key_info)
         args = str(key_info.args.value) if key_info.args else "-"
+        context_list: List[str] = Formatter.context(key_info)
+        context_padding = "\n    "
+        context_list.insert(0, "")
+        context =  context_padding.join(context_list)
 
         key_content += (f"{fn}\n")
         key_content += f"{'=' * len(fn)}\n"
         key_content += f"  keys: {keys}\n"
         key_content += f"  command: {command}\n"
-        key_content += f"  args: {args}\n\n"
+        key_content += f"  args: {args}\n"
+        key_content += f"  context: {context}\n\n"
+
 
       # print(key_content)
       view = window.new_file(sublime.TRANSIENT)

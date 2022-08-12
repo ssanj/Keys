@@ -1,5 +1,8 @@
 from typing import NamedTuple, List, Optional, Dict, Any
 
+class Context(NamedTuple):
+  value: List[Dict[str, Any]]
+
 class Args(NamedTuple):
   value: Dict[str, Any]
 
@@ -17,3 +20,4 @@ class KeyInfo(NamedTuple):
   command: Command
   keys: List[Key]
   args: Optional[Args] = None
+  context: Optional[Context] = None
