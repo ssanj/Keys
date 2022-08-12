@@ -1,3 +1,5 @@
-Command (⌘) + Option (⌥)
-Control (⌃)
-Shift (⇧)
+- [ ] Open a single instance of Keys view
+- [ ] Move to config
+  - [ ] Filters
+  - [ ] Symbolic names
+  - [ ] OS filter
