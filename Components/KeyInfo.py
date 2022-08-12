@@ -13,6 +13,3 @@ class KeyInfo(NamedTuple):
   file_name: FileName
   command: Command
   keys: List[Key]
-
-  def key_combo(self) -> str:
-   return '+'.join(list(map(lambda k: k.value, self.keys)))

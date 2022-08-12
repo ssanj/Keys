@@ -2,6 +2,7 @@ import sublime
 import sublime_plugin
 from typing import Dict, List, Tuple, Any, Optional
 from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key
+from Keys.Components.Formatter import Formatter
 
 class KeyLogic:
 
@@ -64,7 +65,7 @@ class KeysCommand(sublime_plugin.WindowCommand):
       for key_info in key_info_list:
         fn = key_info.file_name.value
         command = key_info.command.value
-        keys = key_info.key_combo()
+        keys = Formatter.key_combo(key_info)
 
         key_content += (f"{fn}\n")
         key_content += f"{'=' * len(fn)}\n"
@@ -113,8 +114,8 @@ class KeysSearchCommand(sublime_plugin.WindowCommand):
       sublime.message_dialog("No Window found")
 
   def create_quick_panel_item(self, window: sublime.Window, key_info: KeyInfo) -> sublime.QuickPanelItem:
-    trigger: str = key_info.command.value
-    details: str = key_info.key_combo()
+    trigger: str = Formatter.command_title_case(key_info)
+    details: str = Formatter.key_combo(key_info)
     annotation: str = ""
     kind = sublime.KIND_AMBIGUOUS
     quick_panel_item = sublime.QuickPanelItem(trigger, details, annotation, kind)
