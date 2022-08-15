@@ -5,6 +5,7 @@ from Keys.Components.SettingsLoader import SettingsLoader
 from Keys.Components.KeyInfo import KeyInfo
 from Keys.Components.Formatter import Formatter
 from Keys.Components.KeyLogic import KeyLogic
+from Keys.Components.ConfigSettings import ConfigSettings
 
 class KeysViewKeyDefinitionsCommand(sublime_plugin.WindowCommand):
 
@@ -13,10 +14,10 @@ class KeysViewKeyDefinitionsCommand(sublime_plugin.WindowCommand):
   def run(self) -> None:
     window = self.window
 
-    settings: sublime.Settings = SettingsLoader.load_settings()
+    config_settings: ConfigSettings = SettingsLoader.load_settings()
 
     if window:
-      key_info_list: List[KeyInfo] = KeyLogic.get_key_info(settings)
+      key_info_list: List[KeyInfo] = KeyLogic.get_key_info(settings = config_settings, filter_packages = False)
 
       key_content = ""
       for key_info in key_info_list:

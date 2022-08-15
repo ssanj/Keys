@@ -15,17 +15,17 @@
 
 ## Functionality
 
+### Search by command or key
+
+To search by command name or key(s) use `F1`
+
+
 ### List all keys
 
-To list all keys press `F1`.
+To list all keys press `SHIFT` + `F1`.
 
 ![](key-definitions.gif)
 
-*Note*: If you've defined a filter, the keys will be filtered to show a subset.
-
-### Search by command or key
-
-To search by command name or key(s) use `SHIFT` + `F1`
 
 #### Searching by Command
 

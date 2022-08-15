@@ -12,17 +12,17 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
   def run(self) -> None:
     window = self.window
 
-    settings: ConfigSettings = SettingsLoader.load_settings()
+    config_settings: ConfigSettings = SettingsLoader.load_settings()
 
     if window:
-      key_info_list: List[KeyInfo] = KeyLogic.get_key_info(settings)
-      panel_items = list(map(lambda ki: self.create_quick_panel_item(settings, window, ki),key_info_list))
+      key_info_list: List[KeyInfo] = KeyLogic.get_key_info(settings = config_settings, filter_packages = True)
+      panel_items = list(map(lambda ki: self.create_quick_panel_item(config_settings, window, ki),key_info_list))
       number_of_items = len(panel_items)
       if number_of_items > 0:
         # Don't show previews
         window.show_quick_panel(
           items = panel_items,
-          on_select = lambda n: self.when_key_selected(settings, window, key_info_list, n),
+          on_select = lambda n: self.when_key_selected(config_settings, window, key_info_list, n),
           placeholder = f"Search Keys:"
         )
       else:

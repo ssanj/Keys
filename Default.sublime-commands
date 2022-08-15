@@ -1,5 +1,5 @@
 [
-    { "caption": "Keys: Show Key maps", "command": "keys_view_key_definitions" },
-    { "caption": "Keys: Search Key maps", "command": "keys_search_key_definitions" },
+    { "caption": "Keys: Show All Key Maps", "command": "keys_view_key_definitions" },
+    { "caption": "Keys: Search Key Maps", "command": "keys_search_key_definitions" },
     { "caption": "Preferences: Keys Settings", "command": "edit_settings", "args": { "base_file": "${packages}/Keys/Keys.sublime-settings", "default": "{\n$0\n}\n" } },
 ]

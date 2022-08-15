@@ -11,7 +11,7 @@ class KeyLogic:
     return len(list(filter(lambda p: package.startswith(p), settings.packages_to_filter_in))) > 0
 
   @staticmethod
-  def get_key_info(settings: ConfigSettings) -> List[KeyInfo]:
+  def get_key_info(settings: ConfigSettings, filter_packages: bool) -> List[KeyInfo]:
     # Should we cache this information?
     keymaps = sublime.find_resources("*.sublime-keymap")
     # Should we move OS specific info to config?
@@ -20,7 +20,7 @@ class KeyLogic:
 
     key_info_list: List[KeyInfo] = []
     for n, (fn, d) in enumerate(list_keymap_dict):
-      if KeyLogic.is_filtered_package(fn, settings):
+      if not filter_packages or KeyLogic.is_filtered_package(fn, settings):
         file_name = FileName(fn)
         for els in d:
           possible_keys: List[str] = list(map(lambda k: k.upper(), els['keys']))
