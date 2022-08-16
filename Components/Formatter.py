@@ -44,10 +44,16 @@ class Formatter:
       context: List[Dict[str, Any]] = key_info.context.value
       context_str: List[str] = []
       for rule in context:
-        rule_items: List[str] = list(map(lambda kv: f"{kv[0]} -> {kv[1]}", rule.items()))
+        rule_items: List[str] = list(map(lambda kv: f"{kv[0]} -> [{Formatter.decode(kv[1])}]", rule.items()))
         rule_str: str = ", ".join(rule_items)
         context_str.append(rule_str)
       return context_str
     else:
       return []
 
+  @staticmethod
+  def decode(context_value: str) -> str:
+    if context_value == "\n":
+      return "<newline>"
+    else:
+      return context_value

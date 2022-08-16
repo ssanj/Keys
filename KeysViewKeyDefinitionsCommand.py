@@ -41,7 +41,7 @@ class KeysViewKeyDefinitionsCommand(sublime_plugin.WindowCommand):
           key_content += f"  command: {command}\n"
           key_content += f"  args: {args}\n"
           key_content += f"  context: {context}\n"
-          key_content += f"{'-' * file_name_length}\n"
+          key_content += f"  {'-' * file_name_length}\n"
 
         key_content += f"\n"
 
