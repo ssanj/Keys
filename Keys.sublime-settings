@@ -1,73 +1,32 @@
 {
 
-  // To filter in *all* packages use:
-  // "packages_to_filter_in": ["Packages/"]
+  // Controls which packages' keys to display when searching
   // these names are used as paths so the trailing '/' is required
   "packages_to_filter_in": [
-    "Packages/User/",
-    "Packages/SymbolView/",
-    "Packages/RecentFolders/",
-    "Packages/QuickView/",
-    "Packages/QuickView/",
-    "Packages/OpenWindows/",
-    "Packages/OpenTabs/",
-    "Packages/OpenSplit/",
-    "Packages/Keys/",
-    "Packages/Ghomments/",
-    "Packages/BlogTools/",
-    "Packages/Scoggle/",
-    "Packages/Quick File Creator/",
-    "Packages/LSP/",
-    "Packages/Default/",
+    "Packages/",
   ],
 
   // Maps keys to symbols or alternate text.
-  // If you don't want any mapping use an empty object here
-  // "symbol_map": {}
-  "symbol_map": {
-    "COMMAND": "⌘",
-    "SUPER": "⌘",
-    "PRIMARY": "⌘",
-    "CTRL": "⌃",
-    "OPTION": "⌥",
-    "ALT": "⌥",
-    "SHIFT": "⇧",
-    "UP": "↑",
-    "DOWN": "↓",
-    "TAB": "⇥",
-    "LEFT": "←",
-    "RIGHT": "→",
-  },
+  // Values should be the "key" to "new value" mapping.
+  // Example to map the SUPER key to "⌘":
+  // {
+  //    "SUPER": "⌘",
+  // }
+  "symbol_map": {},
 
   // Maps command + args combo to more friendly label used when searching for keys
-  // Use an empty list if you don't want any commands mapped to specific labels
-  "label_map_list": [
-    {
-      "command": "scoggle", // with this command name
-      "args": {"matcher": "prefix_suffix_matcher"}, // and this argument set
-      "label": "Scoggle: Prefix Suffix Matcher" // display this name in the search quick view
-    },
-    {
-      "command": "scoggle",
-      "args": {"matcher": "prefix_wildcard_suffix_matcher"},
-      "label": "Scoggle: Prefix Wildcard Suffix Matcher"
-    },
-    {
-      "command": "scoggle",
-      "args": {"matcher": "wildcard_prefix_wildcard_suffix_matcher"},
-      "label": "Scoggle: Prefix Wildcard Suffix Wildcard Matcher"
-    },
-    {
-      "command": "package",
-      "args": {"style": "full"},
-      "label": "Scoggle: Insert Full package"
-    },
-    {
-      "command": "package",
-      "args": {"style": "step"},
-      "label": "Scoggle: Insert Stepped package"
-    },
-  ],
+  // Values should have a "command", "args" and "label" keys and values.
+  // "command" -> string
+  // "args" -> object (key/values)
+  // "label" -> string
+  // [
+  //    {
+  //     "command": "command_name", // with this command name
+  //     "args": {"param1": "some_value_1", "param2": "some_value_2"}, // and this argument set
+  //     "label": "Some Beautiful Command Label" // display this label in the search quick view
+  //    },
+  // ]
+  "label_map_list": [],
 
   // When debug is true, the settings loaded are written to the logs
   // Also if this setting can't be read (because of some issue with the config)
