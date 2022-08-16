@@ -21,6 +21,7 @@
     "Packages/Default/",
   ],
 
+  // Maps keys to symbols or alternate text.
   // If you don't want any mapping use an empty object here
   // "symbol_map": {}
   "symbol_map": {
@@ -37,6 +38,36 @@
     "LEFT": "←",
     "RIGHT": "→",
   },
+
+  // Maps command + args combo to more friendly label used when searching for keys
+  // Use an empty list if you don't want any commands mapped to specific labels
+  "label_map_list": [
+    {
+      "command": "scoggle", // with this command name
+      "args": {"matcher": "prefix_suffix_matcher"}, // and this argument set
+      "label": "Scoggle: Prefix Suffix Matcher" // display this name in the search quick view
+    },
+    {
+      "command": "scoggle",
+      "args": {"matcher": "prefix_wildcard_suffix_matcher"},
+      "label": "Scoggle: Prefix Wildcard Suffix Matcher"
+    },
+    {
+      "command": "scoggle",
+      "args": {"matcher": "wildcard_prefix_wildcard_suffix_matcher"},
+      "label": "Scoggle: Prefix Wildcard Suffix Wildcard Matcher"
+    },
+    {
+      "command": "package",
+      "args": {"style": "full"},
+      "label": "Scoggle: Insert Full package"
+    },
+    {
+      "command": "package",
+      "args": {"style": "step"},
+      "label": "Scoggle: Insert Stepped package"
+    },
+  ],
 
   // When debug is true, the settings loaded are written to the logs
   // Also if this setting can't be read (because of some issue with the config)

@@ -1,7 +1,7 @@
 import sublime
 from typing import Dict, List, Tuple, Any, Optional
-from Keys.Components.ConfigSettings import ConfigSettings
-from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args, Context
+from Keys.Components.ConfigSettings import ConfigSettings, ConfigSettingsHelper
+from Keys.Components.KeyInfo import KeyInfo, Command, FileName, Key, Args, Context, Label
 from Keys.Components.SettingsLoader import SettingsLoader
 
 class KeyLogic:
@@ -30,7 +30,13 @@ class KeyLogic:
           command = Command(els['command'])
           args = Args(els['args']) if 'args' in els else None
           context: Optional[Context] = KeyLogic.get_context(els)
-          key_info_list.append(KeyInfo(file_name, command, keys, args, context))
+          label = None
+          if args:
+            maybe_label = ConfigSettingsHelper.get_label(settings, command.value, args.value)
+            if maybe_label:
+              label = Label(maybe_label)
+
+          key_info_list.append(KeyInfo(file_name, command, keys, args, context, label))
 
 
     return key_info_list

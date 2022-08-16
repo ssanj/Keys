@@ -15,9 +15,13 @@ class Command(NamedTuple):
 class Key(NamedTuple):
   value: str
 
+class Label(NamedTuple):
+  value: str
+
 class KeyInfo(NamedTuple):
   file_name: FileName
   command: Command
   keys: List[Key]
   args: Optional[Args] = None
   context: Optional[Context] = None
+  label: Optional[Label] = None

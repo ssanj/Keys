@@ -31,10 +31,11 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
       sublime.message_dialog("No Window found")
 
   def create_quick_panel_item(self, settings: ConfigSettings, window: sublime.Window, key_info: KeyInfo) -> sublime.QuickPanelItem:
-    command_title_case = Formatter.command_title_case(key_info)
+
+    command_label = key_info.label.value if key_info.label else Formatter.command_title_case(key_info)
     key_combo = Formatter.key_combo(key_info)
     symbolic_key_combo: str = Formatter.get_symbolic_keys(settings, key_info)
-    trigger: str = f"{command_title_case} [{key_combo}]"
+    trigger: str = f"{command_label} [{key_combo}]"
     details: List[str] = \
     [
       f"<b>{symbolic_key_combo}</b>",
@@ -55,7 +56,7 @@ class KeysSearchKeyDefinitionsCommand(sublime_plugin.WindowCommand):
       key_info = key_info_list[index]
       key_combo = Formatter.key_combo(key_info)
       key_combo_symbolic = Formatter.get_symbolic_keys(settings, key_info)
-      command = Formatter.command_title_case(key_info)
+      command = key_info.label.value if key_info.label else Formatter.command_title_case(key_info)
       # Possibly add more data to the popup (context, args)
       # move out styling to theme
       html_content = f"""
